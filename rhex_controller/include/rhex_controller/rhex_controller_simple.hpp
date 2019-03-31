@@ -29,8 +29,6 @@ namespace rhex_controller {
         void set_parameters(const std::vector<double>& ctrl)
         {
             //assert(ctrl.size() == 48);
-
-
             _controller = ctrl;
 
 
@@ -64,7 +62,7 @@ namespace rhex_controller {
         {
         	
             //assert(_controller.size() == 48);
-
+            // a bit messy but creates 2 numbers ratio and other which are between 0 and 1 all the parameters about offset phase and other information is controlled by the control signal
             double ratio = 0;
             double help = 0;
             double temp = 0;
@@ -88,13 +86,10 @@ namespace rhex_controller {
             }
             
 
-            //std::cout<<ratio<<"--"<<other<<std::endl;
-
-//front middle back left/right
             std::vector<double> tau(48,0);
                
             
-
+            //tau is the single target pisition vector and is updated here
             for(int i = 0; i < 6; i++){
                 if((i%2) == 0){
                		tau[i]= ratio*2*PI;
@@ -104,20 +99,19 @@ namespace rhex_controller {
             }
             
 
-
+            // the proportional controller and integral controller are updated here
             set_pd(_controller[5], _controller[6]);
-
-            if (help>0.5){
+            // they are then changed during their slow part or fast part of rotation
+            if (help>_controller[0]){
                 _Kp[0+6] = _controller[7];
                 _Kp[2+6] = _controller[7];
                 _Kp[4+6] = _controller[7];
             }
-            if (temp>0.5){
+            if (temp>_controller[2]){
                 _Kp[1+6] = _controller[7];
                 _Kp[3+6] = _controller[7];
                 _Kp[5+6] = _controller[7];
             }
-            //std::cout<<tau[0]<<" "<<tau[1]<<" "<<tau[2]<<" "<<tau[3]<<" "<<tau[4]<<" "<<tau[5]<<std::endl;
 
             return tau;
         }

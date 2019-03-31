@@ -1,25 +1,11 @@
-# hexapod_common
+# rhex_common
 
-This repo contains all the common data/code for our hexapods.
+This repo contains all the common data/code for our rhex.
 
-## Authors
+### rhex_controller
 
-- Author/Maintainer: Konstantinos Chatzilygeroudis
-- Other contributors: Dorian Goepp, Jean-Baptiste Mouret, Antoine Cully
+Here we keep the gait controllers (generators) that make our rhex alive.
 
-## Packages
-
-Go to the packages' folders for more detailed READMEs.
-
-### hexapod_controller
-
-Here we keep the gait controllers (generators) that make our hexapods alive.
-
-### hexapod_models
-
-Here we keep the simulation and/or ROS models for our hexapods.
-
-The models are generated from xacro files in [hexapod_ros]/[hexapod_description]
 
 ## LICENSE
 

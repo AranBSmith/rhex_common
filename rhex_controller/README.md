@@ -1,24 +1,18 @@
-# hexapod_controller
+# rhex_controller
 
-#### Here we keep the gait controllers (generators) that make our hexapods alive.
+#### Here we keep the gait controllers (generators) that make our rhexs alive.
 
 ## Available controllers
 
-### HexapodControllerSimple
+### RhexControllerSimple
 
-A simple sinusoidal-like controller.
-
-### HexapodControllerCartesian
-
-A controller very similar to HexapodControllerSimple but generating trajectories in cartesian space. These trajectories are to be followed by the tips of the hexapod's legs.
-
-For the sake of compatibility, this class uses the same way to describe the controller, only with 54 parameters instead of 36.
+A simple controller in which 3 of the legs are in phase with eachother and the other 3 legs are out of phase of eachother but parameters like the phase difference between the legs and the duty cycle and the size of the fast roation period to slow aswell as the values of the proportional controller and diffrential controller can be updated.
 
 ## How to compile
 
 ### Compile and install
 
-- cd to `hexapod_controller` folder
+- cd to `rhex_controller` folder
 - Configure with `./waf configure --prefix=path_to_install`
 - Compile with `./waf build`
 - Install with `./waf install`
@@ -27,7 +21,7 @@ For the sake of compatibility, this class uses the same way to describe the cont
 
 ### Using the WAF build system
 
-Add hexapod_controller as an external library using the following script:
+Add rhex_controller as an external library using the following script:
 
 ```python
 #! /usr/bin/env python
@@ -35,7 +29,7 @@ Add hexapod_controller as an external library using the following script:
 # Konstantinos Chatzilygeroudis - 2015
 
 """
-Quick n dirty hexapod_controller detection
+Quick n dirty rhex_controller detection
 """
 
 import os
@@ -43,10 +37,10 @@ from waflib.Configure import conf
 
 
 def options(opt):
-	opt.add_option('--controller', type='string', help='path to hexapod_controller', dest='controller')
+	opt.add_option('--controller', type='string', help='path to rhex_controller', dest='controller')
 
 @conf
-def check_hexapod_controller(conf):
+def check_rhex_controller(conf):
 	includes_check = ['/usr/local/include', '/usr/include']
 
 	# You can customize where you want to check
@@ -58,10 +52,10 @@ def check_hexapod_controller(conf):
 		includes_check = [conf.options.controller + '/include']
 
 	try:
-		conf.start_msg('Checking for hexapod_controller includes')
-		res = conf.find_file('hexapod_controller/hexapod_controller_simple.hpp', includes_check)
+		conf.start_msg('Checking for rhex_controller includes')
+		res = conf.find_file('rhex_controller/rhex_controller_simple.hpp', includes_check)
 		conf.end_msg('ok')
-		conf.env.INCLUDES_HEXAPOD_CONTROLLER = includes_check
+		conf.env.INCLUDES_RHEX_CONTROLLER = includes_check
 	except:
 		conf.end_msg('Not found', 'RED')
 		return
@@ -72,11 +66,11 @@ Then in your C++ code you would have something like the following:
 
 ```cpp
 // previous includes
-#include <hexapod_controller/hexapod_controller_simple.hpp>
+#include <rhex_controller/rhex_controller_simple.hpp>
 
 // rest of code
 
-hexapod_controller::HexapodControllerSimple controller(controller_parameters, broken_legs);
+rhex_controller::RxexControllerSimple controller(controller_parameters, broken_legs);
 
 // rest of code
 ```
