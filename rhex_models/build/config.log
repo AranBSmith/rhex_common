@@ -1,0 +1,10 @@
+# project hexapod_models (0.0.1) configured on Wed Apr  3 16:44:32 2019 by
+# waf 1.8.16 (abi 98, python 2070fc1 on linux2)
+# using ./waf configure --prefix=/home/roman/bull
+#
+----------------------------------------
+Setting top to
+/home/roman/bull/rhex_common/rhex_models
+----------------------------------------
+Setting out to
+/home/roman/bull/rhex_common/rhex_models/build
