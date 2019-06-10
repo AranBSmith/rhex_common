@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 VERSION = '0.0.1'
-APPNAME = 'hexapod_models'
+APPNAME = 'rhex_models'
 
 srcdir = '.'
 blddir = 'build'
@@ -19,5 +19,5 @@ def configure(conf):
 
 
 def build(bld):
-    bld.install_files('${PREFIX}/share/hexapod_models', bld.path.ant_glob('URDF/**'),
+    bld.install_files('${PREFIX}/share/rhex_models', bld.path.ant_glob('URDF/**'),
                   relative_trick=True)
