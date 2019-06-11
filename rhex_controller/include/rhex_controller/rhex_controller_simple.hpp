@@ -28,15 +28,17 @@ namespace rhex_controller {
 
         void set_parameters(const std::vector<double>& ctrl)
         {
-            //assert(ctrl.size() == 48);
+			// TODO testing with parameters of size 36 as map not yet generated 
+        	// assert(ctrl.size() == 48);
+			assert(ctrl.size() == 36);
             _controller = ctrl;
-
-
         }
+
         void set_pd(double Kp, double Kd)
-        {
+        {	
         	_Kp.clear();
         	_Kd.clear();
+			// TODO 54, dof, could vary with leg removal
             for(int i=0; i<54 ;i++){
             	_Kp.push_back(Kp);
             	_Kd.push_back(Kd);
@@ -60,8 +62,8 @@ namespace rhex_controller {
 
         std::vector<double>  pos(double t) 
         {
-        	
-            //assert(_controller.size() == 48);
+        	// TODO
+            assert(_controller.size() == 36);
             // a bit messy but creates 2 numbers ratio and other which are between 0 and 1 all the parameters about offset phase and other information is controlled by the control signal
             double ratio = 0;
             double help = 0;
@@ -70,13 +72,11 @@ namespace rhex_controller {
             help = remainder(double(t),double(0.75))/(0.75);
             help = help +0.5;
             
-            
             ratio = (help<_controller[0])? help*_controller[1]*2 : _controller[1]+(help-_controller[0])*(1-_controller[1])*2;
             ratio = ratio +((1-_controller[1])/2);
             if(ratio>1){
                 ratio = ratio-1;
             }
-            
 
             temp = ((help+_controller[4])>1)? help-_controller[4] : help+_controller[4];
             other = (temp<_controller[2])? temp*_controller[3]*2 : _controller[3]+(temp-_controller[2])*(1-_controller[3])*2;
@@ -84,7 +84,6 @@ namespace rhex_controller {
             if (other>1){
                 other = other-1;
             }
-            
 
             std::vector<double> tau(48,0);
                
@@ -98,7 +97,6 @@ namespace rhex_controller {
                    }
             }
             
-
             // the proportional controller and integral controller are updated here
             set_pd(_controller[5], _controller[6]);
             // they are then changed during their slow part or fast part of rotation
@@ -112,7 +110,6 @@ namespace rhex_controller {
                 _Kp[3+6] = _controller[7];
                 _Kp[5+6] = _controller[7];
             }
-
             return tau;
         }
         std::vector<double> get_Kp(void){
