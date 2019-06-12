@@ -30,7 +30,7 @@ namespace rhex_controller {
         {
 			// TODO testing with parameters of size 36 as map not yet generated 
         	// assert(ctrl.size() == 48);
-			assert(ctrl.size() == 36);
+		//assert(ctrl.size() == 36);
             _controller = ctrl;
         }
 
@@ -63,17 +63,18 @@ namespace rhex_controller {
         std::vector<double>  pos(double t) 
         {
         	// TODO
-            assert(_controller.size() == 36);
+            //assert(_controller.size() == 36);
             // a bit messy but creates 2 numbers ratio and other which are between 0 and 1 all the parameters about offset phase and other information is controlled by the control signal
             double ratio = 0;
             double help = 0;
             double temp = 0;
-            double other =0;
+            double other = 0;
             help = remainder(double(t),double(0.75))/(0.75);
             help = help +0.5;
             
             ratio = (help<_controller[0])? help*_controller[1]*2 : _controller[1]+(help-_controller[0])*(1-_controller[1])*2;
             ratio = ratio +((1-_controller[1])/2);
+
             if(ratio>1){
                 ratio = ratio-1;
             }
@@ -81,20 +82,20 @@ namespace rhex_controller {
             temp = ((help+_controller[4])>1)? help-_controller[4] : help+_controller[4];
             other = (temp<_controller[2])? temp*_controller[3]*2 : _controller[3]+(temp-_controller[2])*(1-_controller[3])*2;
             other += ((1-_controller[3])/2);
+
             if (other>1){
                 other = other-1;
             }
 
             std::vector<double> tau(48,0);
-               
             
-            //tau is the single target pisition vector and is updated here
+            //tau is the single target position vector and is updated here
             for(int i = 0; i < 6; i++){
                 if((i%2) == 0){
                		tau[i]= ratio*2*PI;
                 }else{
                     tau[i]= other*2*PI;
-                   }
+                }
             }
             
             // the proportional controller and integral controller are updated here

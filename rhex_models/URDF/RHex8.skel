@@ -5,7 +5,6 @@
             <imobile>false</imobile>
             <transformation>0 0 0.37 0 0 0</transformation>
 
-
       <body name='body'>
           <transformation>0 0 0 0 0 0</transformation>
       <inertia>
@@ -125,6 +124,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -156,6 +156,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+                    <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -187,6 +188,8 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+                    <color>0.95 0.95 0.95</color>
+
          </visualization_shape>
        </body>
 
