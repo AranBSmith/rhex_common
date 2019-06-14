@@ -5,7 +5,6 @@
             <imobile>false</imobile>
             <transformation>0 0 0.37 0 0 0</transformation>
 
-
       <body name='body'>
           <transformation>0 0 0 0 0 0</transformation>
       <inertia>
@@ -1642,6 +1641,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
@@ -1654,6 +1655,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
@@ -1666,6 +1669,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
@@ -1678,6 +1683,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
@@ -1690,6 +1697,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
@@ -1702,6 +1711,8 @@
         <axis>
              <xyz>0 1 0</xyz>
      	<dynamics>
+<sprint_rest_position>0</sprint_rest_position>
+            <spring_stiffness>1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
