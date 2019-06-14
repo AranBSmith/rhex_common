@@ -5,10 +5,11 @@
             <imobile>false</imobile>
             <transformation>0 0 0.37 0 0 0</transformation>
 
+
       <body name='body'>
           <transformation>0 0 0 0 0 0</transformation>
       <inertia>
-        <mass>7</mass>
+        <mass>1.1</mass>
         <moment_of_inertia>
           <ixx>0.09999558</ixx>
           <ixy>0</ixy>
@@ -156,7 +157,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
-                    <color>0.95 0.95 0.95</color>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -188,8 +189,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
-                    <color>0.95 0.95 0.95</color>
-
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -221,6 +221,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -251,6 +252,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -282,6 +284,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -313,6 +316,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -344,6 +348,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -374,6 +379,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -405,6 +411,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -436,6 +443,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -467,6 +475,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -497,6 +506,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -527,6 +537,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -558,6 +569,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -589,6 +601,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -619,6 +632,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -650,6 +664,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -681,6 +696,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -712,6 +728,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -742,6 +759,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -772,6 +790,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -803,6 +822,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -834,6 +854,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
  
@@ -868,6 +889,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -899,6 +921,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -930,6 +953,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -961,6 +985,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -991,6 +1016,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1021,6 +1047,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1052,6 +1079,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1083,6 +1111,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1113,6 +1142,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1144,6 +1174,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1175,6 +1206,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1206,6 +1238,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1236,6 +1269,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
       <body name='leg_2_8'>
@@ -1265,6 +1299,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1296,6 +1331,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1327,6 +1363,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -1357,6 +1394,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1388,6 +1426,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1419,6 +1458,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1450,6 +1490,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1480,6 +1521,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
        <body name='leg_0_8'>
@@ -1509,6 +1551,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1540,6 +1583,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1571,6 +1615,7 @@
                 <size>.0312 .0175 .003</size>
               </box>
             </geometry>
+            <color>0.95 0.95 0.95</color>
          </visualization_shape>
        </body>
 
@@ -1673,7 +1718,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1687,7 +1732,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1701,7 +1746,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1715,7 +1760,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1729,7 +1774,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1743,7 +1788,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1757,8 +1802,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
@@ -1775,7 +1820,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1789,7 +1834,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1803,7 +1848,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1817,7 +1862,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1831,7 +1876,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1845,7 +1890,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1859,8 +1904,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
@@ -1877,7 +1922,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1891,7 +1936,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1905,7 +1950,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1919,7 +1964,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1933,7 +1978,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1947,7 +1992,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1961,8 +2006,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
@@ -1979,7 +2024,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -1993,7 +2038,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2007,7 +2052,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2021,7 +2066,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2035,7 +2080,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2049,7 +2094,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2063,8 +2108,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
@@ -2080,7 +2125,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2094,7 +2139,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2108,7 +2153,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2122,7 +2167,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2136,7 +2181,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6300</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2150,7 +2195,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2164,8 +2209,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
@@ -2181,7 +2226,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>12667</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2195,7 +2240,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2209,7 +2254,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2223,7 +2268,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>3167</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2237,7 +2282,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>6333</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2251,7 +2296,7 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
+            <spring_stiffness>9500</spring_stiffness>
             <damping>0.1</damping>
         </dynamics>
         </axis>
@@ -2265,8 +2310,8 @@
             <xyz>0 1 0</xyz>
         <dynamics>
             <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>5000</spring_stiffness>
-            <damping>0.1</damping>
+            <spring_stiffness>12667</spring_stiffness>
+            <damping>0.3</damping>
         </dynamics>
         </axis>
 
