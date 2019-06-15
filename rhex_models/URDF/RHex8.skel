@@ -1634,7 +1634,7 @@
       <child>spacer_2</child>
       <parent>body</parent>
     </joint>
-    <joint type="revolute" name="left_front">
+    <joint type="revolute" name="body_joint_2">
         <parent>body</parent>
         <child>leg_2_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1642,13 +1642,13 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
     
     </joint>
-    <joint type="revolute" name="left_middle">
+    <joint type="revolute" name="body_joint_1">
         <parent>spacer_1</parent>
         <child>leg_1_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1656,13 +1656,13 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
     
     </joint>
-    <joint type="revolute" name="left_back">
+    <joint type="revolute" name="body_joint_0">
         <parent>body</parent>
         <child>leg_0_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1670,13 +1670,13 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
     
     </joint>
-    <joint type="revolute" name="right_front">
+    <joint type="revolute" name="body_joint_5">
         <parent>body</parent>
         <child>leg_5_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1684,13 +1684,13 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
     
     </joint>
-    <joint type="revolute" name="right_middle">
+    <joint type="revolute" name="body_joint_4">
         <parent>spacer_2</parent>
         <child>leg_4_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1698,13 +1698,13 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
     
     </joint>
-    <joint type="revolute" name="right_back">
+    <joint type="revolute" name="body_joint_3">
         <parent>body</parent>
         <child>leg_3_1</child>
         <transformation>0.0156 0 0 0 0 0</transformation>
@@ -1712,7 +1712,7 @@
              <xyz>0 1 0</xyz>
      	<dynamics>
 <sprint_rest_position>0</sprint_rest_position>
-            <spring_stiffness>1</spring_stiffness>
+            <spring_stiffness>0.1</spring_stiffness>
             <damping>0.01</damping>
       	</dynamics>
         </axis>
