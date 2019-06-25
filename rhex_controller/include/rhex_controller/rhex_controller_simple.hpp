@@ -17,6 +17,7 @@ namespace rhex_controller {
         typedef std::array<double, ARRAY_DIM> array_t;
 
         RhexControllerSimple() {}
+
         RhexControllerSimple(const std::vector<double>& ctrl, std::vector<int> broken_legs)
             : _broken_legs(broken_legs)
         {
@@ -30,7 +31,7 @@ namespace rhex_controller {
         {
 			// TODO testing with parameters of size 36 as map not yet generated 
         	// assert(ctrl.size() == 48);
-		//assert(ctrl.size() == 36);
+            // assert(ctrl.size() == 36);
             _controller = ctrl;
         }
 
@@ -39,7 +40,7 @@ namespace rhex_controller {
         	_Kp.clear();
         	_Kd.clear();
 			// TODO 54, dof, could vary with leg removal
-            for(int i=0; i<54 ;i++){
+            for(int i=0; i < 54 ;i++){
             	_Kp.push_back(Kp);
             	_Kd.push_back(Kd);
             }
@@ -69,53 +70,59 @@ namespace rhex_controller {
             double help = 0;
             double temp = 0;
             double other = 0;
-            help = remainder(double(t),double(0.75))/(0.75);
-            help = help +0.5;
-            
-            ratio = (help<_controller[0])? help*_controller[1]*2 : _controller[1]+(help-_controller[0])*(1-_controller[1])*2;
-            ratio = ratio +((1-_controller[1])/2);
 
-            if(ratio>1){
+            help = remainder(double(t), double(0.75)) / (0.75);
+            help = help + 0.5;
+            
+            ratio = (help < _controller[0]) ? help * _controller[1] * 2 : _controller[1] + (help - _controller[0]) * (1 - _controller[1]) * 2;
+            ratio = ratio + ((1 - _controller[1]) / 2);
+
+            if(ratio > 1){
                 ratio = ratio-1;
             }
 
-            temp = ((help+_controller[4])>1)? help-_controller[4] : help+_controller[4];
-            other = (temp<_controller[2])? temp*_controller[3]*2 : _controller[3]+(temp-_controller[2])*(1-_controller[3])*2;
-            other += ((1-_controller[3])/2);
+            temp = ((help + _controller[4]) > 1) ? help - _controller[4] : help + _controller[4];
+            other = (temp < _controller[2]) ? temp * _controller[3] * 2 : _controller[3] + (temp - _controller[2]) * (1 - _controller[3]) * 2;
+            other += ((1 - _controller[3]) / 2);
 
-            if (other>1){
+            if (other > 1){
                 other = other-1;
             }
 
             std::vector<double> tau(48,0);
             
-            //tau is the single target position vector and is updated here
+            // tau is the single target position vector and is updated here
             for(int i = 0; i < 6; i++){
-                if((i%2) == 0){
-               		tau[i]= ratio*2*PI;
-                }else{
-                    tau[i]= other*2*PI;
+                if((i % 2) == 0){
+                    tau[i]= ratio * 2 * PI;
+                } else {
+                    tau[i]= other * 2 * PI;
                 }
             }
             
             // the proportional controller and integral controller are updated here
             set_pd(_controller[5], _controller[6]);
+
             // they are then changed during their slow part or fast part of rotation
-            if (help>_controller[0]){
+            if (help > _controller[0]){
                 _Kp[0+6] = _controller[7];
                 _Kp[2+6] = _controller[7];
                 _Kp[4+6] = _controller[7];
             }
-            if (temp>_controller[2]){
+
+            if (temp > _controller[2]){
                 _Kp[1+6] = _controller[7];
                 _Kp[3+6] = _controller[7];
                 _Kp[5+6] = _controller[7];
             }
+
             return tau;
         }
+
         std::vector<double> get_Kp(void){
         	return _Kp;
         }
+
         std::vector<double> get_Kd(void){
         	return _Kd;
         }

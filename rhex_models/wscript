@@ -19,5 +19,5 @@ def configure(conf):
 
 
 def build(bld):
-    bld.install_files('${PREFIX}/share/rhex_models', bld.path.ant_glob('URDF/**'),
+    bld.install_files('${PREFIX}/share/rhex_models', bld.path.ant_glob('SKEL/**'),
                   relative_trick=True)
