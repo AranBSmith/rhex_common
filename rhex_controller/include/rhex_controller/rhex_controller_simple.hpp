@@ -29,9 +29,10 @@ namespace rhex_controller {
 
         void set_parameters(const std::vector<double>& ctrl)
         {
-			// TODO testing with parameters of size 36 as map not yet generated 
-        	// assert(ctrl.size() == 48);
-            // assert(ctrl.size() == 36);
+//            std::cout << "ctrl size: ";
+//            std::cout << ctrl.size() << std::endl;
+
+            assert(ctrl.size() == 48);
             _controller = ctrl;
         }
 
@@ -64,7 +65,7 @@ namespace rhex_controller {
         std::vector<double>  pos(double t) 
         {
         	// TODO
-            //assert(_controller.size() == 36);
+            assert(_controller.size() == 48);
             // a bit messy but creates 2 numbers ratio and other which are between 0 and 1 all the parameters about offset phase and other information is controlled by the control signal
             double ratio = 0;
             double help = 0;
