@@ -64,7 +64,6 @@ namespace rhex_controller {
 
         std::vector<double>  pos(double t) 
         {
-        	// TODO
             assert(_controller.size() == 48);
             // a bit messy but creates 2 numbers ratio and other which are between 0 and 1 all the parameters about offset phase and other information is controlled by the control signal
             double ratio = 0;
@@ -90,7 +89,7 @@ namespace rhex_controller {
                 other = other-1;
             }
 
-            std::vector<double> tau(48,0);
+            std::vector<double> tau(48, 0);
             
             // tau is the single target position vector and is updated here
             for(int i = 0; i < 6; i++){

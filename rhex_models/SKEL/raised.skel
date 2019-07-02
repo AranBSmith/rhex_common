@@ -4,7 +4,7 @@
         <skeleton name="Rhex">
             <imobile>false</imobile>
 
-            <transformation>0 0 0.37 0 0 0</transformation>
+            <transformation>0 0 0.20 0 0 0</transformation>
 
       <body name='body'>
           <transformation>0 0 0.025 0 0 0</transformation>
