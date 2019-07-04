@@ -45,4 +45,6 @@ def build(bld):
                 target = 'rhex_controller_simple')
 
     bld.install_files('${PREFIX}/include/rhex_controller', 'include/rhex_controller/rhex_controller_simple.hpp')
+    bld.install_files('${PREFIX}/include/rhex_controller', 'include/rhex_controller/rhex_controller_cpg.hpp')
+
 

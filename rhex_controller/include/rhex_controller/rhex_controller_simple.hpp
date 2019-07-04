@@ -41,7 +41,7 @@ namespace rhex_controller {
         	_Kp.clear();
         	_Kd.clear();
 			// TODO 54, dof, could vary with leg removal
-            for(int i=0; i < 54 ;i++){
+            for(size_t i=0; i < 54 ;i++){
             	_Kp.push_back(Kp);
             	_Kd.push_back(Kd);
             }
@@ -92,7 +92,7 @@ namespace rhex_controller {
             std::vector<double> tau(48, 0);
             
             // tau is the single target position vector and is updated here
-            for(int i = 0; i < 6; i++){
+            for(size_t i = 0; i < 6; i++){
                 if((i % 2) == 0){
                     tau[i]= ratio * 2 * PI;
                 } else {

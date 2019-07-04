@@ -19,11 +19,22 @@ namespace rhex_controller {
         RhexControllerCPG(const std::vector<double>& ctrl)
         {
             set_parameters(ctrl);
+
         }
 
         void set_parameters(const std::vector<double>& ctrl)
         {
             assert(ctrl.size() == CTRL_SIZE);
+
+            for ( size_t i = 0; i < ctrl.size(); ++i){
+                std::cout<<ctrl[i]<<std::endl;
+            }
+            
+            std::cout << "Phase: ";
+            for ( size_t i = 0; i < _phase.size(); ++i){
+                std::cout << _phase[i] << " ";
+            }
+            std::cout << std::endl;
 
             _freq = 0.4;
             _duty_ratio = 0.5;
@@ -31,18 +42,19 @@ namespace rhex_controller {
             _thettg = -5 * PI / 6;
             _amp = PI;
 
-            _controller = ctrl;
+            _phase = ctrl;
 
             // set up phase vector to start at correct position.
             // the start position is between the start & end of stance period
             _start_phase = _thettg - _thetlg;
 
-            for(size_t i = 0; i < CTRL_SIZE; ++i)
-                _phase.push_back(_start_phase);
+            _phase = std::vector<double>(6,0); // reset in case of carry over.
+            for(int i = 0; i < CTRL_SIZE; ++i)
+                _phase[i] = _start_phase;
 
             // set up weights between each of the legs, 1 for each except itself.
             // [[0,1,1,1,1,1],[1,0,1,1,1,1],[1,1,0,1,1,1],[1,1,1,0,1,1],[1,1,1,1,0,1],[1,1,1,1,1,0]]
-            _weights.resize(6, std::vector<double>(6,0));
+            _weights.resize(6, std::vector<double>(6, 0));
             for(size_t i = 0; i < CTRL_SIZE; ++i)
             {
                 for(size_t j = 0; j < CTRL_SIZE; ++j)
@@ -84,7 +96,7 @@ namespace rhex_controller {
         {
             _Sf = (2 * PI - (_thetlg - _thettg)) / ((1 - _duty_ratio) * 2 * PI);
             _Ss = transform((_thetlg - _thettg) / (_duty_ratio * 2 * PI));
-            _thettg_in = transform(_thettg - _dr * 2 * pi) + 2 * PI; // this value needs to be in the interval [-pi, pi], thus add 2pi
+            _thettg_in = transform(_thettg - _duty_ratio * 2 * PI) + 2 * PI; // this value needs to be in the interval [-pi, pi], thus add 2pi
 
         }
 
@@ -95,10 +107,10 @@ namespace rhex_controller {
             {
                 double t = 0;
 
-                if (floor(x / PI) % 2 == 1)
-                    t = (x % (2 * PI)) - 2 * PI;
+                if (fmod(floor(x / PI), 2) == 1)
+                    t = fmod(x , (2 * PI)) - 2 * PI;
                 else
-                    t = (x % (2 * PI));
+                    t = fmod(x , (2 * PI));
 
                 return t;
             }
@@ -106,10 +118,10 @@ namespace rhex_controller {
             return x;
         }
 
-        double dp(idx){
-            double phasediff = 2 * PI * _f;
+        double dp(size_t idx){
+            double phasediff = 2 * PI * _freq;
 
-            for (int i = 0; i < _phase.size; i++)
+            for (size_t i = 0; i < _phase.size(); ++i)
             {
                 if (i != idx)
                     phasediff += _amp * _weights[idx][i] * sin(_phase[i] - _phase[idx] - _phase_bias[idx][i]);
@@ -119,55 +131,63 @@ namespace rhex_controller {
 
         void update_values()
         {
-            for (int i = 0; i < _phase.size; i++)
+            for ( size_t i = 0; i < _phase.size(); ++i){
+                //std::cout<<_phase[i]<<std::endl;
+            }
+            for (size_t i = 0; i < _phase.size(); ++i){
+                //std::cout<<_phase.size()<<std::endl;
                 _phase[i] = _phase[i] + dp(i) * _dt;
+             }
+
         }
 
         // transform a value into its respective swing or stance value.
-        double mono_tran(x)
+        double mono_transform(double x)
         {
-            y = 0;
+            double y = 0;
             if (transform(x) <= _thettg)
-                y = _thettg + (translate(x) - _thettg) * _Sf;
-            else if (translate(x) <= _thettg_in)
-                y = _thettg + (translate(x) - _thettg) * _Ss;
+                y = _thettg + (transform(x) - _thettg) * _Sf;
+            else if (transform(x) <= _thettg_in)
+                y = _thettg + (transform(x) - _thettg) * _Ss;
             else
-                y = _thetlg + (translate(x) - _thettg_in) * _Sf;
+                y = _thetlg + (transform(x) - _thettg_in) * _Sf;
 
             return y;
         }
 
+        // make const?
         std::vector<double>& output()
         {
             std::vector<double> act;
-            for (int i = 0; i < _phase.size; i++)
-                act.push_back(_mono_transform(_phase[i]));
+            for (size_t i = 0; i < _phase.size(); i++)
+                act.push_back(mono_transform(_phase[i]));
             return act;
         }
 
-        std::vector<double>& get_phase()
+        const std::vector<double>& get_phase() const
         {
             return _phase;
         }
 
         const std::vector<double>& parameters() const
         {
-            return _controller;
+            return _phase;
         }
 
         // use cpg to return values
-        // TODO
-        std::vector<double>  pos(double t)
+        std::vector<double> pos(double t)
         {
-            assert(_controller.size() == CTRL_SIZE);
-            _dt = t;
+//            for ( size_t i = 0; i < _phase.size(); ++i){
+//                std::cout<<_phase[i]<<std::endl;
+//            }
+            assert(_phase.size() == CTRL_SIZE);
 
-            return tau;
+            _dt = t;
+            update_values();
+            return get_phase();
         }
 
     protected:
-        std::vector<double> _controller;
-
         double _thetlg;
         double _thettg;
         double _thettg_in;
@@ -178,9 +198,9 @@ namespace rhex_controller {
         double _dt;
         double _duty_ratio;
         double _start_phase;
-        std::vector<vector<double> > _phase_bias;
-        std::vector<vector<double> > _weights;
-        std::vector<vector<double> > _phase;
+        std::vector<std::vector<double> > _phase_bias;
+        std::vector<std::vector<double> > _weights;
+        std::vector<double> _phase;
     };
 } // namespace rhex_controller
 
