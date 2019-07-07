@@ -26,21 +26,13 @@ namespace rhex_controller {
         {
             assert(ctrl.size() == CTRL_SIZE);
 
-            for ( size_t i = 0; i < ctrl.size(); ++i){
-                std::cout<<ctrl[i]<<std::endl;
-            }
-            
-            std::cout << "Phase: ";
-            for ( size_t i = 0; i < _phase.size(); ++i){
-                std::cout << _phase[i] << " ";
-            }
-            std::cout << std::endl;
-
-            _freq = 0.4;
+            _freq = 0.2;
             _duty_ratio = 0.5;
-            _thetlg = -PI / 6;
-            _thettg = -5 * PI / 6;
+            _thetlg = -PI / 3;
+            _thettg = -2 * PI / 3;
             _amp = PI;
+            _last_time = 0;
+            _dt = 0.0;
 
             _phase = ctrl;
 
@@ -49,8 +41,8 @@ namespace rhex_controller {
             _start_phase = _thettg - _thetlg;
 
             _phase = std::vector<double>(6,0); // reset in case of carry over.
-            for(int i = 0; i < CTRL_SIZE; ++i)
-                _phase[i] = _start_phase;
+//            for(int i = 0; i < CTRL_SIZE; ++i)
+//                _phase[i] = _start_phase;
 
             // set up weights between each of the legs, 1 for each except itself.
             // [[0,1,1,1,1,1],[1,0,1,1,1,1],[1,1,0,1,1,1],[1,1,1,0,1,1],[1,1,1,1,0,1],[1,1,1,1,1,0]]
@@ -61,7 +53,7 @@ namespace rhex_controller {
                 {
                     if (i != j)
                     {
-                        _weights[i][j] = 1;
+                        _weights[i][j] = 10;
                     }
                 }
             }
@@ -89,6 +81,8 @@ namespace rhex_controller {
                     }
                 }
             }
+
+            calc_vars();
         }
 
         // intermediate variables calculated based on start and end of stance phase
@@ -103,19 +97,41 @@ namespace rhex_controller {
         // transforms values in the range -pi to pi.
         double transform(double x)
         {
-            if (x > PI)
-            {
-                double t = 0;
+//            if (x > PI)
+//            {
+//                double t = 0;
 
-                if (fmod(floor(x / PI), 2) == 1)
-                    t = fmod(x , (2 * PI)) - 2 * PI;
-                else
-                    t = fmod(x , (2 * PI));
+//                if (fmod(floor(x / PI), 2) == 1)
+//                    t = fmod(x, (2 * PI)) - 2 * PI;
+//                else
+//                    t = fmod(x, (2 * PI));
 
-                return t;
+//                if (std::isnan(t)) {
+//                    std::cout << "ERROR: transform(double x): ";
+//                    std::cout << " x: " << x;
+//                    std::cout << " x/2PI : " << (x / (2*PI));
+//                    std::cout << " fmod1: " << fmod(x , (2 * PI));
+//                }
+
+//                return t;
+//            }
+
+//            else if (x < -PI)
+//            {
+
+//            }
+            double y = x;
+            if ( x < -PI ){
+                double z = floor((x+PI) / (2 * PI));
+                y = x + (-z*2*PI);
             }
 
-            return x;
+            else if (x > PI){
+                double z = ceil((x-PI) / (2 * PI));
+                y = x - (z*2*PI);
+            }
+
+            return y;
         }
 
         double dp(size_t idx){
@@ -134,6 +150,7 @@ namespace rhex_controller {
             for ( size_t i = 0; i < _phase.size(); ++i){
                 //std::cout<<_phase[i]<<std::endl;
             }
+
             for (size_t i = 0; i < _phase.size(); ++i){
                 //std::cout<<_phase.size()<<std::endl;
                 _phase[i] = _phase[i] + dp(i) * _dt;
@@ -144,6 +161,7 @@ namespace rhex_controller {
         // transform a value into its respective swing or stance value.
         double mono_transform(double x)
         {
+            // std::cout<< "mono transform received: " << x << std::endl;
             double y = 0;
             if (transform(x) <= _thettg)
                 y = _thettg + (transform(x) - _thettg) * _Sf;
@@ -152,17 +170,22 @@ namespace rhex_controller {
             else
                 y = _thetlg + (transform(x) - _thettg_in) * _Sf;
 
-            return y;
+            if (std::isnan(y)){
+                std::cout << "ERROR: produced nan value from mono_transform: ";
+                std::cout << "Sf: " << _Sf << " ";
+                std::cout << "Ss: " << _Ss << " ";
+                std::cout << "Thettg: " << _thettg << " ";
+                std::cout << "Thettlg:  " << _thetlg << " ";
+                std::cout << "Thetg_in:  " << _thettg_in << " ";
+                std::cout << "transform x:  " << transform(x) << " ";
+                std::exit(0);
+            }
+
+            // std::cout << "Returning: " << transform(y) << std::endl;
+            return transform(y); //+ (PI/2);
         }
 
         // make const?
-        std::vector<double>& output()
-        {
-            std::vector<double> act;
-            for (size_t i = 0; i < _phase.size(); i++)
-                act.push_back(mono_transform(_phase[i]));
-            return act;
-        }
 
         const std::vector<double>& get_phase() const
         {
@@ -182,8 +205,11 @@ namespace rhex_controller {
 //            }
             assert(_phase.size() == CTRL_SIZE);
 
-            _dt = t;
+            // t treated as current time.
+            _dt = t - _last_time;
+            //std::cout << "CPG delta time: " << _dt << std::endl;
             update_values();
+            _last_time = t;
             return get_phase();
         }
 
@@ -195,6 +221,7 @@ namespace rhex_controller {
         double _Ss;
         double _amp;
         double _freq;
+        double _last_time;
         double _dt;
         double _duty_ratio;
         double _start_phase;

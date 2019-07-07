@@ -9,7 +9,7 @@
       <body name='body'>
           <transformation>0 0 0.025 0 0 0</transformation>
       <inertia>
-        <mass>3</mass>
+        <mass>7</mass>
         <moment_of_inertia>
           <ixx>0.09999558</ixx>
           <ixy>0</ixy>
