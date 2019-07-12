@@ -19,7 +19,6 @@ namespace rhex_controller {
         RhexControllerCPG(const std::vector<double>& ctrl)
         {
             set_parameters(ctrl);
-
         }
 
         void set_parameters(const std::vector<double>& ctrl)

@@ -247,4 +247,4 @@ namespace rhex_controller {
     };
 }
 
-#endif // RHEX_CONTROLLER_HOPF
+#endif
