@@ -8,7 +8,7 @@
 #include <vector>
 
 #define PI 3.14159265
-#define CTRL_SIZE 4
+#define CTRL_SIZE 9
 #define DOF 6
 
 #define F 3
@@ -45,47 +45,59 @@ namespace rhex_controller {
             _stance_angle = ctrl[2] * PI;
             _stance_offset = ctrl[3] * OFFSET;
 
+            _phase_offset.resize(DOF, 0);
+            _phase_offset[0] = 0;
+            _phase_offset[1] = ctrl[4] * _period;
+            _phase_offset[2] = ctrl[5] * _period;
+            _phase_offset[3] = ctrl[6] * _period;
+            _phase_offset[4] = ctrl[7] * _period;
+            _phase_offset[5] = ctrl[8] * _period;
+
             _last_time = 0;
             _dt = 0.0;
 
             _phase.resize(DOF, 0);
 
+            for(size_t i = 0; i < DOF; ++i)
+                _phase[i] += _phase_offset[i];
+
             // set up weights between each of the legs, 1 for each except it_
             // [[0,1,1,1,1,1],[1,0,1,1,1,1],[1,1,0,1,1,1],[1,1,1,0,1,1],[1,1,1,1,0,1],[1,1,1,1,1,0]]
-            _weights.resize(DOF, std::vector<double>(DOF, 0));
-            for(size_t i = 0; i < DOF; ++i)
-            {
-                for(size_t j = 0; j < DOF; ++j)
-                {
-                    if (i != j)
-                    {
-                        _weights[i][j] = 1;
-                    }
-                }
-            }
+//            _weights.resize(DOF, std::vector<double>(DOF, 0));
+//            for(size_t i = 0; i < DOF; ++i)
+//            {
+//                for(size_t j = 0; j < DOF; ++j)
+//                {
+//                    if (i != j)
+//                    {
+//                        _weights[i][j] = 1;
+//                    }
+//                }
+//            }
 
-            _phase_bias.resize(DOF, std::vector<double>(DOF, 0));
-            for(size_t i = 0; i < DOF; ++i)
-            {
-                for(size_t j = 0; j < DOF; ++j)
-                {
-                    if (i == 0 || i % 2 == 0)
-                    {
-                        if (j == 0 || j % 2 == 0)
-                            _phase_bias[i][j] = 0;
-                        else
-                            _phase_bias[i][j] = PI;
-                    }
-                    else
-                    {
-                        if (j == 0 || j % 2 == 0)
-                            _phase_bias[i][j] = -PI;
-                        else
-                            _phase_bias[i][j] = 0;
-                    }
-                }
-            }
+//            _phase_bias.resize(DOF, std::vector<double>(DOF, 0));
+//            for(size_t i = 0; i < DOF; ++i)
+//            {
+//                for(size_t j = 0; j < DOF; ++j)
+//                {
+//                    if (i == 0 || i % 2 == 0)
+//                    {
+//                        if (j == 0 || j % 2 == 0)
+//                            _phase_bias[i][j] = 0;
+//                        else
+//                            _phase_bias[i][j] = _phase_offset;
+//                    }
+//                    else
+//                    {
+//                        if (j == 0 || j % 2 == 0)
+//                            _phase_bias[i][j] = -_phase_offset;
+//                        else
+//                            _phase_bias[i][j] = 0;
+//                    }
+//                }
+//            }
 
+            _phase_bias.resize(DOF);
             _counter.resize(DOF, 0);
 
         }
@@ -108,8 +120,8 @@ namespace rhex_controller {
                 else if(t > _duty_time && t <= _period)
                     output[i] = _stance_angle / 2 + ((2 * PI - _stance_angle)/(_period - _duty_time)) * (t - _duty_time);
 
-                for (size_t j = 0; j < DOF; ++j)
-                    output[i] += _weights[i][j] * (_phase[j] - _phase[i] - _phase_bias[i][j]);
+//                for (size_t j = 0; j < DOF; ++j)
+//                    output[i] += _weights[i][j] * (_phase[j] - _phase[i] - _phase_bias[i][j]);
 
 
                 _counter[i] = floor(_phase[i] / _period);
@@ -119,10 +131,10 @@ namespace rhex_controller {
                     output[i] += _stance_offset;
             }
 
-            std::cout << "phase: ";
-            for (size_t i = 0; i < DOF; ++i)
-                std::cout << _phase[i] << " ";
-            std::cout<<std::endl;
+//            std::cout << "phase: ";
+//            for (size_t i = 0; i < DOF; ++i)
+//                std::cout << _phase[i] << " ";
+//            std::cout<<std::endl;
 
             return output;
         }
@@ -148,8 +160,9 @@ namespace rhex_controller {
         double _last_time;
         double _stance_offset;
         double _stance_angle;
-
+        std::vector<double> _phase_offset;
         std::vector<std::vector<double> > _phase_bias;
+
         std::vector<std::vector<double> > _weights;
         std::vector<int> _counter;
         std::vector<double> _ctrl;
