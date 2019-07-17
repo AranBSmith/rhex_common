@@ -8,12 +8,13 @@
 #include <vector>
 
 #define PI 3.14159265
-#define CTRL_SIZE 9
+#define CTRL_SIZE 24
 #define DOF 6
-
 #define F 3
-#define OFFSET 6.28
+#define OFFSET 2 * PI
 
+// TODO: DF for each leg individually
+// TODO: SO for each leg individually
 namespace rhex_controller {
 
     class RhexControllerBuehler {
@@ -38,40 +39,43 @@ namespace rhex_controller {
 
             _f = ctrl[0] * F;
             _period = 1 / _f;
-            _duty_factor = ctrl[1];
 
-            _duty_time = _duty_factor * _period;
+            _duty_factor.resize(DOF, 0);
+            _duty_time.resize(DOF, 0);
+            _stance_angle.resize(DOF, 0);
+            _stance_offset.resize(DOF, 0);
 
-            _stance_angle = ctrl[2] * PI;
-            _stance_offset = ctrl[3] * OFFSET;
+            for (size_t i = 0; i < DOF; ++i)
+            {
+                _duty_factor[i] = ctrl[i+1];
+                _duty_time[i] = _duty_factor[i] * _period;
+                _stance_angle[i] = ctrl[i+7] * PI;
+                _stance_offset[i] = ctrl[i+13] * OFFSET;
+            }
 
             // this scheme does not bias gaits to belong to a particular style like
             // tripod, or caterpillar.
             _phase_offset.resize(DOF, 0);
             _phase_offset[0] = 0;
-            _phase_offset[1] = ctrl[4] * _period;
-            _phase_offset[2] = ctrl[5] * _period;
-            _phase_offset[3] = ctrl[6] * _period;
-            _phase_offset[4] = ctrl[7] * _period;
-            _phase_offset[5] = ctrl[8] * _period;
+            _phase_offset[1] = ctrl[19] * _period;
+            _phase_offset[2] = ctrl[20] * _period;
+            _phase_offset[3] = ctrl[21] * _period;
+            _phase_offset[4] = ctrl[22] * _period;
+            _phase_offset[5] = ctrl[23] * _period;
 
             _last_time = 0;
             _dt = 0.0;
 
-            _phase.resize(DOF, 0);
-
             // offset according to parameters, this will define the type of gait
+            _phase.resize(DOF, 0);
             for(size_t i = 0; i < DOF; ++i)
                 _phase[i] += _phase_offset[i];
 
-            _phase_bias.resize(DOF);
             _counter.resize(DOF, 0);
-
         }
 
         std::vector<double> pos(double t)
         {
-
             _dt = t - _last_time;
             _last_time = t;
 
@@ -81,17 +85,17 @@ namespace rhex_controller {
 
             for (size_t i = 0; i < DOF; ++i){
                 double t = fmod(_phase[i], _period);
-                if (t <= _duty_time)
-                    output[i] = - _stance_angle / 2 + (_stance_angle / _duty_time) * t;
+                if (t <= _duty_time[i])
+                    output[i] = - _stance_angle[i] / 2 + (_stance_angle[i] / _duty_time[i]) * t;
 
-                else if(t > _duty_time && t <= _period)
-                    output[i] = _stance_angle / 2 + ((2 * PI - _stance_angle)/(_period - _duty_time)) * (t - _duty_time);
+                else if(t > _duty_time[i] && t <= _period)
+                    output[i] = _stance_angle[i] / 2 + ((2 * PI - _stance_angle[i])/(_period - _duty_time[i])) * (t - _duty_time[i]);
 
                 _counter[i] = floor(_phase[i] / _period);
                 output[i] += _counter[i] * 2 * PI;
 
                 for (size_t j = 0; j < DOF; ++j)
-                    output[i] += _stance_offset;
+                    output[i] += _stance_offset[i];
             }
 
 //            std::cout << "phase: ";
@@ -116,17 +120,19 @@ namespace rhex_controller {
     protected:
         double _f;
         double _period;
-        double _duty_time;
-        double _duty_factor;
         double _time;
         double _dt;
         double _last_time;
-        double _stance_offset;
-        double _stance_angle;
-        std::vector<double> _phase_offset;
-        std::vector<std::vector<double> > _phase_bias;
 
+        std::vector<double> _stance_angle;
+        std::vector<double> _duty_factor;
+        std::vector<double> _duty_time;
+        std::vector<double> _stance_offset;
+        std::vector<double> _phase_offset;
+
+        std::vector<std::vector<double> > _phase_bias;
         std::vector<std::vector<double> > _weights;
+
         std::vector<int> _counter;
         std::vector<double> _ctrl;
         std::vector<double> _phase;
