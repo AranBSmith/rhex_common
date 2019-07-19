@@ -8,13 +8,11 @@
 #include <vector>
 
 #define PI 3.14159265
-#define CTRL_SIZE 24
+#define CTRL_SIZE 23
 #define DOF 6
 #define F 3
 #define OFFSET 2 * PI
 
-// TODO: DF for each leg individually
-// TODO: SO for each leg individually
 namespace rhex_controller {
 
     class RhexControllerBuehler {
@@ -37,8 +35,9 @@ namespace rhex_controller {
                 _ctrl[i] = ctrl[i];
             }
 
-            _f = ctrl[0] * F;
-            _period = 1 / _f;
+            // _f = ctrl[0] * F;
+            // _period = 1 / _f;
+            _period = 1; // 1Hz cycle, prevents rhex from being idle
 
             _duty_factor.resize(DOF, 0);
             _duty_time.resize(DOF, 0);
@@ -47,21 +46,21 @@ namespace rhex_controller {
 
             for (size_t i = 0; i < DOF; ++i)
             {
-                _duty_factor[i] = ctrl[i+1];
+                _duty_factor[i] = ctrl[i];
                 _duty_time[i] = _duty_factor[i] * _period;
-                _stance_angle[i] = ctrl[i+7] * PI;
-                _stance_offset[i] = ctrl[i+13] * OFFSET;
+                _stance_angle[i] = ctrl[i+6] * PI;
+                _stance_offset[i] = ctrl[i+12] * OFFSET;
             }
 
             // this scheme does not bias gaits to belong to a particular style like
             // tripod, or caterpillar.
             _phase_offset.resize(DOF, 0);
             _phase_offset[0] = 0;
-            _phase_offset[1] = ctrl[19] * _period;
-            _phase_offset[2] = ctrl[20] * _period;
-            _phase_offset[3] = ctrl[21] * _period;
-            _phase_offset[4] = ctrl[22] * _period;
-            _phase_offset[5] = ctrl[23] * _period;
+            _phase_offset[1] = ctrl[18] * _period;
+            _phase_offset[2] = ctrl[19] * _period;
+            _phase_offset[3] = ctrl[20] * _period;
+            _phase_offset[4] = ctrl[21] * _period;
+            _phase_offset[5] = ctrl[22] * _period;
 
             _last_time = 0;
             _dt = 0.0;
