@@ -11,7 +11,7 @@
 #define CTRL_SIZE 23
 #define DOF 6
 #define F 3
-#define OFFSET 2 * PI
+#define OFFSET PI/2
 
 namespace rhex_controller {
 
@@ -49,7 +49,7 @@ namespace rhex_controller {
                 _duty_factor[i] = ctrl[i];
                 _duty_time[i] = _duty_factor[i] * _period;
                 _stance_angle[i] = ctrl[i+6] * PI;
-                _stance_offset[i] = ctrl[i+12] * OFFSET;
+                _stance_offset[i] = (ctrl[i+12] - 0.5) * OFFSET + PI;
             }
 
             // this scheme does not bias gaits to belong to a particular style like
