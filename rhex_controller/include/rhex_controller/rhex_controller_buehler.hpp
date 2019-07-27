@@ -37,7 +37,7 @@ namespace rhex_controller {
 
             // _f = ctrl[0] * F;
             // _period = 1 / _f;
-            _period = 0.33; // 1Hz cycle, prevents rhex from being idle
+            _period = 0.5; // 1Hz cycle, prevents rhex from being idle
 
             _duty_factor.resize(DOF, 0);
             _duty_time.resize(DOF, 0);
@@ -49,18 +49,18 @@ namespace rhex_controller {
                 _duty_factor[i] = ctrl[i];
                 _duty_time[i] = _duty_factor[i] * _period;
                 _stance_angle[i] = ctrl[i+6] * PI;
-                _stance_offset[i] = (ctrl[i+12] - 0.5) * OFFSET + PI;
+                _stance_offset[i] = (ctrl[i+12] - 0.5) * OFFSET;
             }
 
             // this scheme does not bias gaits to belong to a particular style like
             // tripod, or caterpillar.
             _phase_offset.resize(DOF, 0);
             _phase_offset[0] = 0;
-            _phase_offset[1] = ctrl[18] * _period;
-            _phase_offset[2] = ctrl[19] * _period;
-            _phase_offset[3] = ctrl[20] * _period;
-            _phase_offset[4] = ctrl[21] * _period;
-            _phase_offset[5] = ctrl[22] * _period;
+            _phase_offset[1] = ctrl[18] * _period / 2;
+            _phase_offset[2] = ctrl[19] * _period / 2;
+            _phase_offset[3] = ctrl[20] * _period / 2;
+            _phase_offset[4] = ctrl[21] * _period / 2;
+            _phase_offset[5] = ctrl[22] * _period / 2;
 
             _last_time = 0;
             _dt = 0.0;
