@@ -37,7 +37,7 @@ namespace rhex_controller {
 
             // _f = ctrl[0] * F;
             // _period = 1 / _f;
-            _period = 0.5; // 1Hz cycle, prevents rhex from being idle
+            _period = 1; // 1Hz cycle, prevents rhex from being idle
 
             _duty_factor.resize(DOF, 0);
             _duty_time.resize(DOF, 0);
