@@ -8,10 +8,11 @@
 #include <vector>
 
 #define PI 3.14159265
-#define CTRL_SIZE 23
+#define CTRL_SIZE 24
 #define DOF 6
 #define F 3
 #define OFFSET PI/2
+#define MIN_P 0.33 // min period is 0.33 or 3 cycles per second
 
 namespace rhex_controller {
 
@@ -35,32 +36,31 @@ namespace rhex_controller {
                 _ctrl[i] = ctrl[i];
             }
 
-            // _f = ctrl[0] * F;
-            // _period = 1 / _f;
-            _period = 0.5; // 1Hz cycle, prevents rhex from being idle
+            // take away some portion of 0.66 controlled by argument
+            _period = 1 - ctrl[0] * (1 - MIN_P); // 1Hz cycle, prevents rhex from being idle
 
             _duty_factor.resize(DOF, 0);
             _duty_time.resize(DOF, 0);
             _stance_angle.resize(DOF, 0);
             _stance_offset.resize(DOF, 0);
 
-            for (size_t i = 0; i < DOF; ++i)
+            for (size_t i = 1; i <= DOF; ++i)
             {
-                _duty_factor[i] = ctrl[i];
-                _duty_time[i] = _duty_factor[i] * _period;
-                _stance_angle[i] = ctrl[i+6] * PI;
-                _stance_offset[i] = (ctrl[i+12] - 0.5) * OFFSET;
+                _duty_factor[i-1] = ctrl[i];
+                _duty_time[i-1] = _duty_factor[i-1] * _period;
+                _stance_angle[i-1] = ctrl[i+6] * PI;
+                _stance_offset[i-1] = (ctrl[i+12] - 0.5) * OFFSET;
             }
 
             // this scheme does not bias gaits to belong to a particular style like
             // tripod, or caterpillar.
             _phase_offset.resize(DOF, 0);
             _phase_offset[0] = 0;
-            _phase_offset[1] = ctrl[18] * _period / 2;
-            _phase_offset[2] = ctrl[19] * _period / 2;
-            _phase_offset[3] = ctrl[20] * _period / 2;
-            _phase_offset[4] = ctrl[21] * _period / 2;
-            _phase_offset[5] = ctrl[22] * _period / 2;
+            _phase_offset[1] = ctrl[19] * _period / 2;
+            _phase_offset[2] = ctrl[20] * _period / 2;
+            _phase_offset[3] = ctrl[21] * _period / 2;
+            _phase_offset[4] = ctrl[22] * _period / 2;
+            _phase_offset[5] = ctrl[23] * _period / 2;
 
             _last_time = 0;
             _dt = 0.0;
