@@ -1,11 +1,14 @@
 # rhex_common
 
-This repo contains all the common data/code for our rhex.
+This repo contains all the common data/code for the rhex.
 
 ### rhex_controller
 
-Here we keep the gait controllers (generators) that make our rhex alive.
+Here is kept the gait controllers (generators) that make our rhex alive.
 
+### rhex_models
+
+Keeps all the SKEL files which can be used by DART.
 
 ## LICENSE
 
