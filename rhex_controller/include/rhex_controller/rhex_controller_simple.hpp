@@ -10,6 +10,8 @@
 #define PI 3.14159265
 #define ARRAY_DIM 100
 
+// @author: Roman Buckle MEng
+
 namespace rhex_controller {
 
     class RhexControllerSimple {
@@ -29,8 +31,6 @@ namespace rhex_controller {
 
         void set_parameters(const std::vector<double>& ctrl)
         {
-//            std::cout << "ctrl size: ";
-//            std::cout << ctrl.size() << std::endl;
 
             assert(ctrl.size() == 48);
             _controller = ctrl;

@@ -17,6 +17,8 @@
 #define K 40
 #define SIGMA 3
 
+// this file is a work in progress
+
 namespace rhex_controller {
 
     class RhexControllerHopf {

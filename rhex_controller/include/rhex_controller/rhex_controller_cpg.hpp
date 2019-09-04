@@ -9,6 +9,8 @@
 #define PI 3.14159265
 #define CTRL_SIZE 6
 
+// this file is a work in progress
+
 namespace rhex_controller {
 
     class RhexControllerCPG {

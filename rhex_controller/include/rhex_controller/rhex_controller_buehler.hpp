@@ -37,8 +37,8 @@ namespace rhex_controller {
             }
 
             // take away some portion of 0.66 controlled by argument
-            _period = 1 - ctrl[0] * (1 - MIN_P); // 1Hz cycle, prevents rhex from being idle
-
+            // giving us a cycle range between (0.33Hz - 1Hz)
+            _period = 1 - ctrl[0] * (1 - MIN_P);
             _duty_factor.resize(DOF, 0);
             _duty_time.resize(DOF, 0);
             _stance_angle.resize(DOF, 0);
@@ -52,10 +52,10 @@ namespace rhex_controller {
                 _stance_offset[i-1] = (ctrl[i+12] - 0.5) * OFFSET;
             }
 
-            // this scheme does not bias gaits to belong to a particular style like
-            // tripod, or caterpillar.
+            // define phase offsets here.
+            // this scheme does not bias gaits to belong to a particular style like tripod.
             _phase_offset.resize(DOF, 0);
-            _phase_offset[0] = 0;
+            _phase_offset[0] = 0;                           // this is the reference leg
             _phase_offset[1] = ctrl[19] * _period / 2;
             _phase_offset[2] = ctrl[20] * _period / 2;
             _phase_offset[3] = ctrl[21] * _period / 2;
@@ -65,7 +65,7 @@ namespace rhex_controller {
             _last_time = 0;
             _dt = 0.0;
 
-            // offset according to parameters, this will define the type of gait
+            // offset according to respective phase offsets defined above, this will define the type of gait
             _phase.resize(DOF, 0);
             for(size_t i = 0; i < DOF; ++i)
                 _phase[i] += _phase_offset[i];
@@ -73,6 +73,7 @@ namespace rhex_controller {
             _counter.resize(DOF, 0);
         }
 
+        // calculate leg signal according to (Seipal and Holmes 2007)
         std::vector<double> pos(double t)
         {
             _dt = t - _last_time;
@@ -88,7 +89,7 @@ namespace rhex_controller {
                     output[i] = - _stance_angle[i] / 2 + (_stance_angle[i] / _duty_time[i]) * t;
 
                 else if(t > _duty_time[i] && t <= _period)
-                    output[i] = _stance_angle[i] / 2 + ((2 * PI - _stance_angle[i])/(_period - _duty_time[i])) * (t - _duty_time[i]);
+                    output[i] = _stance_angle[i] / 2 + ((2 * PI - _stance_angle[i]) / (_period - _duty_time[i])) * (t - _duty_time[i]);
 
                 _counter[i] = floor(_phase[i] / _period);
                 output[i] += _counter[i] * 2 * PI;
@@ -96,11 +97,6 @@ namespace rhex_controller {
                 for (size_t j = 0; j < DOF; ++j)
                     output[i] += _stance_offset[i];
             }
-
-//            std::cout << "phase: ";
-//            for (size_t i = 0; i < DOF; ++i)
-//                std::cout << _phase[i] << " ";
-//            std::cout<<std::endl;
 
             return output;
         }
